@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+
 
 extension String {
     var hexColor: UIColor {
@@ -28,20 +31,12 @@ extension String {
     }
 }
 
-
-protocol ToDoView : class{
-    func afterElementAddedTVReload()->()
-    func afterElementDeletedTVReload(at index:Int)->()
-    func updateElementToDoItem(at index:Int)->()
-    func reloadArrayItems()->()
-}
-
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var txtFieldNewItems: UITextField!
     @IBOutlet weak var tableViewItems: UITableView!
     
+    var disposeBag = DisposeBag()
     var viewModel:ToDoModel?
     
     @IBAction func AddItemsOnClick(_ sender: Any)
@@ -61,7 +56,19 @@ class ViewController: UIViewController {
       let nibname = UINib(nibName: "ToDoItemViewCell", bundle: nil)
       tableViewItems.register(nibname, forCellReuseIdentifier: todoItemIdentifier)
       
-      viewModel = ToDoModel(viewVC: self)
+      viewModel = ToDoModel()
+      
+     
+        viewModel?.items.asObservable().bind(to:
+            tableViewItems.rx.items(cellIdentifier: todoItemIdentifier,
+                                    cellType: ToDoItemViewCell.self))
+            {
+                (index,item,cell) in
+            
+                cell.configure(withModelView: item)
+         
+            }.disposed(by:disposeBag)
+        
         
     }
 
@@ -73,51 +80,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var AddItem: UIButton!
     
 }
-extension ViewController:ToDoView
-{
-   
-    
-    func afterElementAddedTVReload()
-    {
-        guard let viewModelItemsArray = viewModel?.items else {return }
-        DispatchQueue.main.async
-            {
-            self.txtFieldNewItems.text = self.viewModel?.newValue
-            self.tableViewItems.beginUpdates()
-            self.tableViewItems.insertRows(at: [IndexPath(row: viewModelItemsArray.count-1,section:0)], with: .automatic)
-            self.tableViewItems.endUpdates()
-        }
-       
-        
-    }
-    
-    func updateElementToDoItem(at index: Int) {
-        DispatchQueue.main.async
-            {
-             self.tableViewItems.reloadRows(at: [IndexPath(row:index,section:0)], with: .automatic)
-         }
-        
-    }
-    
-    func afterElementDeletedTVReload(at index:Int)
-    {
-        DispatchQueue.main.async {
-            self.tableViewItems.beginUpdates()
-            self.tableViewItems.deleteRows(at: [IndexPath(row: index,section:0)], with: .automatic)
-            self.tableViewItems.endUpdates()
-        }
-       
-    }
-    func reloadArrayItems()
-    {
-        DispatchQueue.main.async
-            {
-                self.tableViewItems.reloadData()
-                
-        }
-    }
-    
-}
+
 extension ViewController:UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -129,7 +92,7 @@ extension ViewController:UITableViewDelegate
         
         var menuActions:[UIContextualAction]=[]
         
-        let itemViewModel = viewModel?.items[indexPath.row]
+        let itemViewModel = viewModel?.items.value[indexPath.row]
        _ = itemViewModel?.menuItems?.map({
         
             menu in
@@ -155,22 +118,5 @@ extension ViewController:UITableViewDelegate
         return UISwipeActionsConfiguration(actions: menuActions)
     }
 }
-extension ViewController:UITableViewDataSource
-{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return (viewModel?.items.count)!
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-                                                 withIdentifier: todoItemIdentifier,
-                                                 for: indexPath) as? ToDoItemViewCell
-        let itemViewModel = viewModel?.items[indexPath.row]
-        
-        cell?.configure(withModelView: itemViewModel!)
-       
-        return cell!
-    }
-}
+
 

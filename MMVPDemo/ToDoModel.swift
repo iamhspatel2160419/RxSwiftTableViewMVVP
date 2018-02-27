@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol ToDoMenuItemViewPresentable {
     var title : String? {get set}
@@ -128,20 +129,20 @@ extension TodoItemViewModel:ToDoItemViewDelegate
 class ToDoModel:ItemS
     
 {
-    weak var ViewVC:ToDoView?
+   
   
     var newValue: String?
     
     
-    var items : [ToDoItemPresentable] = []
+    var items : Variable<[ToDoItemPresentable]> = Variable([])
     
-    init(viewVC:ToDoView)
+    init()
     {
-        self.ViewVC = viewVC
+      
         let item1 = TodoItemViewModel(id1: "1", textVal: "Mac PC",parentViewModel:self as ToDoViewDelegate)
         let item2 = TodoItemViewModel(id1: "2", textVal: "Laptop",parentViewModel:self as ToDoViewDelegate)
         let item3 = TodoItemViewModel(id1: "3", textVal: "iphone7",parentViewModel:self as ToDoViewDelegate)
-        items.append(contentsOf:[item1,item2,item3])
+        items.value.append(contentsOf:[item1,item2,item3])
     }
  }
 
@@ -150,26 +151,26 @@ extension ToDoModel:ToDoViewDelegate
 {
     func onAddItem() {
         guard let newValueOfItem = newValue else  {return }
-        let itemIndex = items.count + 1
+        let itemIndex = items.value.count + 1
         let newItem=TodoItemViewModel(id1: "\(itemIndex)", textVal:newValueOfItem,parentViewModel:self as ToDoViewDelegate)
-        self.items.append(newItem)
+        self.items.value.append(newItem)
         self.newValue=""
-        self.ViewVC?.afterElementAddedTVReload()
+        
     }
     
     func onRemoveSelected(toDoItem: String) {
-        guard let index = self.items.index(where: {$0.id! == toDoItem})
+        guard let index = self.items.value.index(where: {$0.id! == toDoItem})
             else { return }
         
-        self.items.remove(at: index)
-        self.ViewVC?.afterElementDeletedTVReload(at: index)
+        self.items.value.remove(at: index)
+       
     }
     
     func onDoneSelected(toDoItem: String) {
-        guard let index = self.items.index(where: {$0.id! == toDoItem})
+        guard let index = self.items.value.index(where: {$0.id! == toDoItem})
             else { return }
         
-            var toDoItem = self.items[index]
+            var toDoItem = self.items.value[index]
         
            toDoItem.isDone = !(toDoItem.isDone)!
         
@@ -179,7 +180,7 @@ extension ToDoModel:ToDoViewDelegate
               {
                 doneMenuItem.title = toDoItem.isDone! ? "UnDone" : "Done"
               }
-           self.items.sort(by:
+           self.items.value.sort(by:
             {
                 if !($0.isDone!) && !($1.isDone!)
                 {
@@ -191,7 +192,7 @@ extension ToDoModel:ToDoViewDelegate
                 }
             return !($0.isDone!) && $1.isDone!
             })
-        self.ViewVC?.reloadArrayItems()
+       
        
     }
     

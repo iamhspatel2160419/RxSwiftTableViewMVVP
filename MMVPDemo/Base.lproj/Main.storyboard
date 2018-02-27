@@ -41,7 +41,6 @@
                                 <rect key="frame" x="0.0" y="119" width="375" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="hvK-VY-YRc"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="cRf-NA-OHS"/>
                                 </connections>
                             </tableView>

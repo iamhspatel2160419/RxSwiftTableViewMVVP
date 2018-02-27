@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7654727923EA544243DBC4C /* Pods_MMVPDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF68519715A02D039D836E0 /* Pods_MMVPDemo.framework */; };
 		E019D73E2042C0D70047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.58.35.png in Resources */ = {isa = PBXBuildFile; fileRef = E019D73A2042C0D10047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.58.35.png */; };
 		E019D73F2042C0D70047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.59.55.png in Resources */ = {isa = PBXBuildFile; fileRef = E019D73B2042C0D50047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.59.55.png */; };
 		E019D7402042C0D70047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 02.00.13.png in Resources */ = {isa = PBXBuildFile; fileRef = E019D73C2042C0D60047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 02.00.13.png */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8771A446E20EC6005AFB19DF /* Pods-MMVPDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMVPDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMVPDemo/Pods-MMVPDemo.release.xcconfig"; sourceTree = "<group>"; };
 		E019D73A2042C0D10047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.58.35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.58.35.png"; sourceTree = "<group>"; };
 		E019D73B2042C0D50047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.59.55.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 6 - 2018-02-25 at 01.59.55.png"; sourceTree = "<group>"; };
 		E019D73C2042C0D60047DF18 /* Simulator Screen Shot - iPhone 6 - 2018-02-25 at 02.00.13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 6 - 2018-02-25 at 02.00.13.png"; sourceTree = "<group>"; };
@@ -36,6 +38,8 @@
 		E0E0EA2220417D0F0087063E /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
 		E0E0EA24204183960087063E /* ToDoItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemViewCell.swift; sourceTree = "<group>"; };
 		E0E0EA25204183960087063E /* ToDoItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoItemViewCell.xib; sourceTree = "<group>"; };
+		E964FDCD903D7B13122E9AB4 /* Pods-MMVPDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMVPDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MMVPDemo/Pods-MMVPDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		EAF68519715A02D039D836E0 /* Pods_MMVPDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMVPDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +47,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7654727923EA544243DBC4C /* Pods_MMVPDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		565A6449232C67EEB6512BBF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E964FDCD903D7B13122E9AB4 /* Pods-MMVPDemo.debug.xcconfig */,
+				8771A446E20EC6005AFB19DF /* Pods-MMVPDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E019D7422042C12E0047DF18 /* Snaps */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +79,8 @@
 			children = (
 				E0E0EA0F204176790087063E /* MMVPDemo */,
 				E0E0EA0E204176790087063E /* Products */,
+				565A6449232C67EEB6512BBF /* Pods */,
+				FB07C43344D012FBE59129F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +109,14 @@
 			path = MMVPDemo;
 			sourceTree = "<group>";
 		};
+		FB07C43344D012FBE59129F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAF68519715A02D039D836E0 /* Pods_MMVPDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -100,9 +124,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0E0EA1F204176890087063E /* Build configuration list for PBXNativeTarget "MMVPDemo" */;
 			buildPhases = (
+				687656D6F9EE15F73768978F /* [CP] Check Pods Manifest.lock */,
 				E0E0EA09204176740087063E /* Sources */,
 				E0E0EA0A204176740087063E /* Frameworks */,
 				E0E0EA0B204176740087063E /* Resources */,
+				8B483D9C15A9ED0A2816BF6F /* [CP] Embed Pods Frameworks */,
+				FA47792758E8F0FFBFD4971C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +191,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		687656D6F9EE15F73768978F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MMVPDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B483D9C15A9ED0A2816BF6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MMVPDemo/Pods-MMVPDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MMVPDemo/Pods-MMVPDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA47792758E8F0FFBFD4971C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MMVPDemo/Pods-MMVPDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E0E0EA09204176740087063E /* Sources */ = {
@@ -308,6 +391,7 @@
 		};
 		E0E0EA20204176890087063E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E964FDCD903D7B13122E9AB4 /* Pods-MMVPDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -322,6 +406,7 @@
 		};
 		E0E0EA21204176890087063E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8771A446E20EC6005AFB19DF /* Pods-MMVPDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
